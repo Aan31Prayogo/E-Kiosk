@@ -50,3 +50,5 @@ Thumbs.db
 
 *.pyc
 
+/UI/__pycache__/
+/Utility/__pycache__/
