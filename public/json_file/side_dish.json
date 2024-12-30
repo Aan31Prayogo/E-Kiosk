@@ -1,0 +1,64 @@
+{
+    "data": [
+        {
+            "name": "Pergedel",
+            "origin": "Java",
+            "description": "Fried potato cakes mixed with ground meat, often served as a side dish or snack.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Pergedel.jpg"
+        },
+        {
+            "name": "Tempeh Goreng",
+            "origin": "Nationwide",
+            "description": "Fried tempeh, a traditional Indonesian soy product, often served with sambal or as a side dish.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Tempe_Goreng.jpg"
+        },
+        {
+            "name": "Sambal",
+            "origin": "Nationwide",
+            "description": "A spicy chili paste or sauce, commonly served as a condiment or side dish to accompany various meals.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Sambal.jpg"
+        },
+        {
+            "name": "Acar",
+            "origin": "Java",
+            "description": "Pickled vegetables such as carrots, cucumbers, and cabbage, often served alongside grilled meats or rice dishes.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/98/Acar.jpg"
+        },
+        {
+            "name": "Kerupuk",
+            "origin": "Nationwide",
+            "description": "Crispy crackers made from fish or shrimp, commonly served as a side snack or accompaniment to rice dishes.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Kerupuk.jpg"
+        },
+        {
+            "name": "Tahu Tempe Bacem",
+            "origin": "Java",
+            "description": "Tempeh and tofu cooked in sweet soy sauce and spices, then deep-fried to create a savory, sweet side dish.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Tahu_Tempe_Bacem.jpg"
+        },
+        {
+            "name": "Sayur Asem",
+            "origin": "Java",
+            "description": "A sour vegetable soup made with tamarind, peanuts, and a variety of fresh vegetables.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Sayur_Asem.jpg"
+        },
+        {
+            "name": "Lalapan",
+            "origin": "Java",
+            "description": "A simple side dish consisting of raw vegetables like cucumber, lettuce, and basil, usually served with sambal.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Lalapan.jpg"
+        },
+        {
+            "name": "Nasi Uduk",
+            "origin": "Jakarta",
+            "description": "Fragrant rice cooked in coconut milk, often served with fried chicken, omelets, or sambal.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Nasi_Uduk.jpg"
+        },
+        {
+            "name": "Gurame Goreng",
+            "origin": "West Java",
+            "description": "Crispy fried gourami fish, often served with sambal and a side of rice.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Gurame_Goreng.jpg"
+        }
+    ]
+}

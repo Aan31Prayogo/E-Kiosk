@@ -1,0 +1,58 @@
+{
+    "data" : [
+                {
+                    "name": "Es Cendol",
+                    "origin": "West Java",
+                    "description": "An iced sweet dessert drink with green rice flour jelly, coconut milk, and palm sugar syrup.",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Es_Cendol.jpg"
+                },
+                {
+                    "name": "Es Campur",
+                    "origin": "Nationwide",
+                    "description": "A mixed ice dessert made with various ingredients like fruits, jelly, coconut, and sweet syrups.",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/71/Es_Campur.jpg"
+                },
+                {
+                    "name": "Bajigur",
+                    "origin": "West Java",
+                    "description": "A warm, sweet drink made from coconut milk, palm sugar, and spices, often enjoyed on rainy days.",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/39/Bajigur.jpg"
+                },
+                {
+                    "name": "Wedang Jahe",
+                    "origin": "Java",
+                    "description": "A traditional ginger tea made with boiled ginger, palm sugar, and pandan leaves.",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/Wedang_Jahe.jpg"
+                },
+                {
+                    "name": "Kopi Tubruk",
+                    "origin": "Java",
+                    "description": "A simple coffee preparation where finely ground coffee is boiled with sugar.",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/63/Kopi_Tubruk.jpg"
+                },
+                {
+                    "name": "Es Doger",
+                    "origin": "Cirebon, West Java",
+                    "description": "A sweet, pink-colored drink made with coconut milk, fermented cassava, and sweet syrup.",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/25/Es_Doger.jpg"
+                },
+                {
+                    "name": "Sekoteng",
+                    "origin": "Central Java",
+                    "description": "A warm, spiced drink made with ginger, peanuts, and other toppings, often sold by street vendors.",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/91/Sekoteng.jpg"
+                },
+                {
+                    "name": "Bandrek",
+                    "origin": "Sundanese, West Java",
+                    "description": "A traditional spiced beverage made from ginger and palm sugar, perfect for warming up on cold days.",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/Bandrek.jpg"
+                },
+                {
+                    "name": "Es Teler",
+                    "origin": "Central Java",
+                    "description": "A refreshing drink with young coconut, avocado, jackfruit, and condensed milk, often topped with ice.",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Es_Teler.jpg"
+                }
+            ]
+}

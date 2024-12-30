@@ -1,0 +1,64 @@
+{
+    "data": [
+        {
+            "name": "Krupuk Udang",
+            "origin": "Nationwide",
+            "description": "Shrimp crackers, often served as a crunchy accompaniment to various Indonesian dishes.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Krupuk_Udang.jpg"
+        },
+        {
+            "name": "Bubuk Cabai",
+            "origin": "Nationwide",
+            "description": "Ground chili powder often sprinkled over dishes to add a spicy kick.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Chili_Powder.jpg"
+        },
+        {
+            "name": "Emping Melinjo",
+            "origin": "Java",
+            "description": "Crispy crackers made from the melinjo nut, usually served as a crunchy side dish or snack.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/44/Emping_Melinjo.jpg"
+        },
+        {
+            "name": "Sambal Terasi",
+            "origin": "Java",
+            "description": "A spicy condiment made from shrimp paste, chilies, and lime, perfect for adding flavor to meals.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Sambal_Terasi.jpg"
+        },
+        {
+            "name": "Kacang Goreng",
+            "origin": "Java",
+            "description": "Fried peanuts, often served as a crunchy snack or added to dishes for extra texture.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/37/Kacang_Goreng.jpg"
+        },
+        {
+            "name": "Keripik Singkong",
+            "origin": "Nationwide",
+            "description": "Cassava chips, fried until crispy and commonly enjoyed as a snack or side dish.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Keripik_Singkong.jpg"
+        },
+        {
+            "name": "Petis",
+            "origin": "East Java",
+            "description": "A thick black shrimp paste used as a condiment, adding a rich umami flavor to dishes.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Petis.jpg"
+        },
+        {
+            "name": "Tahu Susu",
+            "origin": "West Java",
+            "description": "Sweet tofu made from soybeans and sugar, typically served as a dessert or sweet snack.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Tahu_Susu.jpg"
+        },
+        {
+            "name": "Serundeng",
+            "origin": "Java",
+            "description": "Spiced coconut flakes, often added to dishes like nasi uduk or served with fried chicken.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Serundeng.jpg"
+        },
+        {
+            "name": "Pindang",
+            "origin": "Sumatra",
+            "description": "A tangy and spicy fish sauce that adds flavor to dishes like rice or grilled fish.",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Pindang.jpg"
+        }
+    ]
+}

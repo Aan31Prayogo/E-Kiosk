@@ -1,8 +1,15 @@
 import flet as ft
 from Utility import utility
 from UI.HomePage import HomePage
+from UI.CardMenuTemplate import CardMenuTemplate
 
 WINDOW_COLOR = "#fefefe"
+data = {
+    "name": "Rawon",
+    "origin": "East Java",
+    "description": "A rich beef soup flavored with keluak (black nut) for its distinctive dark color and unique taste.",
+    "image_url": "https://asset.kompas.com/crops/RAkLCVPTiwC_qhG4W4wb1dN-uX4=/0x12:983x667/1200x800/data/photo/2023/11/17/6556dc6484a92.jpg"
+}
 
 def main(page: ft.Page):
     screen_res = utility.get_screen_resolution() 
@@ -10,8 +17,8 @@ def main(page: ft.Page):
     page.window.height = 820
     page.window.top = 0
     page.window.left = screen_res[0] - page.window.width
-    page.window.title_bar_hidden = False
-    page.window.always_on_top = False    
+    page.window.title_bar_hidden = True
+    page.window.always_on_top = True    
     page.window.frameless = True
     page.window.bgcolor = WINDOW_COLOR
     page.bgcolor = WINDOW_COLOR
@@ -30,7 +37,8 @@ def main(page: ft.Page):
             ft.Text("By Aan Prayogo", size=10)
         ]
     )
-  
-    page.add(HomePage(page))
+    
+    card__  =CardMenuTemplate(page, data).build()
+    page.add(card__)
 
 ft.app(target=main)
