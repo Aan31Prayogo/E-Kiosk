@@ -4,8 +4,12 @@ import os
 from UI.CardMenuTemplate import CardMenuTemplate
 
 PATH_JSON = os.path.join(os.getcwd(), "json_file")
-with open(os.path.join(PATH_JSON, "food.json"), "r") as file:
-    json_main_course = json.load(file)['data']
+
+with open(os.path.join(PATH_JSON, "food.json"), "r") as file_main_course:
+    json_main_course = json.load(file_main_course)['data']
+    
+with open(os.path.join(PATH_JSON, "beverages.json"), "r") as file_beverages:
+    json_beveragees = json.load(file_beverages)['data']
 
 class MenuPage(ft.Column):
     def __init__(self, page):
@@ -15,9 +19,27 @@ class MenuPage(ft.Column):
         self.page = page
 
     def get_content_tab(self, e):
+        global content_menu_row
         index = int(e.data)
+        print(index)
+        
+        content_menu_row.content.controls.clear()
+        #Main course
+        if index == 0:
+            for data__ in json_main_course:
+                content_menu_row.content.controls.append(
+                    CardMenuTemplate(self.page, data__)
+            )
+        elif index == 1:  
+            for data__ in json_beveragees:
+                content_menu_row.content.controls.append(
+                    CardMenuTemplate(self.page, data__)
+            )
+        self.page.update()
 
     def build(self):
+        global content_menu_row
+        
         tab_main_course = ft.Tab(
             text="Main Course",
         )
@@ -46,7 +68,10 @@ class MenuPage(ft.Column):
                 indicator_color="#edb009",
                 label_color="black",
                 unselected_label_color="#b5b4b1",
-                tabs=[tab_main_course, tab_side_dish, tab_beverages, tab_add_on],
+                tabs=[tab_main_course,
+                      tab_beverages,
+                      tab_side_dish, 
+                      tab_add_on],
                 on_change=lambda e: self.get_content_tab(e),
             ),
         )
@@ -72,7 +97,7 @@ class MenuPage(ft.Column):
             alignment=ft.alignment.center_left,
             width=820,
             height=65,
-            bgcolor="#edb009",
+            bgcolor="#383838",
             content=ft.Row(
                 alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
                 vertical_alignment=ft.CrossAxisAlignment.CENTER,
@@ -83,14 +108,14 @@ class MenuPage(ft.Column):
                         horizontal_alignment=ft.CrossAxisAlignment.END,
                         spacing=5,
                         controls=[
-                            ft.Text("IDR : ", color="black", weight=ft.FontWeight.W_700),
-                            ft.Text("Item(s) : ", color="black", weight=ft.FontWeight.W_700),
+                            ft.Text("IDR : ", color="white", weight=ft.FontWeight.W_700),
+                            ft.Text("Item(s) : ", color="white", weight=ft.FontWeight.W_700),
                         ],
                     ),
                     ft.TextButton(
                         text="NEXT",
                         icon=ft.icons.NAVIGATE_NEXT,
-                        style=ft.ButtonStyle(color="black"),
+                        style=ft.ButtonStyle(color="white"),
                     ),
                 ],
             ),
@@ -106,7 +131,6 @@ class MenuPage(ft.Column):
         for data__ in json_main_course:
             content_menu_row.content.controls.append(
                 CardMenuTemplate(self.page, data__)
-            )
-            
+            )    
 
         return view_menu_page

@@ -52,3 +52,4 @@ Thumbs.db
 
 /UI/__pycache__/
 /Utility/__pycache__/
+UI/__pycache__/*
