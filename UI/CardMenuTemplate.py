@@ -26,8 +26,24 @@ class CardMenuTemplate(ft.Card):
     #SECTION - UI
     #NOTE - MainView                
     def build(self):
+        self.order_qty = ft.Container(
+            width=30,
+            height=30,
+            border_radius=15,
+            visible= False,
+            bgcolor = "#403f3d",
+            alignment= ft.alignment.center,
+            content = ft.Text(
+                "",
+                color="#ffffff",
+                size=18,
+                text_align=ft.TextAlign.CENTER,
+                weight= ft.FontWeight.W_400
+            )
+        )
+        
         self.content = ft.Container(
-            width=180,
+            width=210,
             height=160,
             padding=10,
             border_radius=ft.border_radius.all(10),
@@ -48,7 +64,15 @@ class CardMenuTemplate(ft.Card):
 
                     ),
                     ft.Text(self.origin, color="#403f3c", size=12, text_align=ft.TextAlign.START, italic=True),
-                    ft.Text(self.title, color="#403f3c", size=18, text_align=ft.TextAlign.START)
+                    ft.Row(
+                        width = 200,
+                        controls = [
+                            ft.Text(self.title, color="#403f3c", size=18, text_align=ft.TextAlign.START),
+                            self.order_qty
+                        ],
+                        spacing= 50,
+                        alignment= ft.MainAxisAlignment.SPACE_BETWEEN
+                    )
                 ],
                 alignment=ft.MainAxisAlignment.START
             ),
@@ -60,7 +84,14 @@ class CardMenuTemplate(ft.Card):
     
     # NOTE - Content Dialog Detail Menu
     def content_detail(self):
-        self.qty = ft.TextField(value="0", text_align=ft.TextAlign.CENTER, width=80)
+        self.qty = ft.TextField(
+            value="0", 
+            text_align=ft.TextAlign.CENTER, 
+            width=80,
+            border_color="black",
+            label= "Qty",
+            read_only=True
+        )
         self.total_price = ft.Text("0", color="black", size=18, weight= ft.FontWeight.W_400)
 
         return ft.Container(
@@ -83,7 +114,13 @@ class CardMenuTemplate(ft.Card):
                                 alignment=ft.MainAxisAlignment.START,
                                 spacing = 10
                             ),
-                            self.total_price                      
+                            ft.Column(
+                                controls= [
+                                    ft.Text("Total Price"),
+                                    self.total_price                      
+                                ],
+                                alignment= ft.MainAxisAlignment.CENTER
+                            )
                         ],
                         alignment= ft.MainAxisAlignment.START,
                         spacing= 80  
@@ -104,11 +141,18 @@ class CardMenuTemplate(ft.Card):
             bgcolor="green",
             icon=ft.icons.ADD_SHOPPING_CART,
             icon_color="white",
-            disabled=True
+            disabled=True,
+            on_click= lambda e: self.handle_btn_cart(e)
         )
-
         
-        self.btn_cancel = ft.ElevatedButton("Cancel", color="white", bgcolor="red", icon=ft.icons.CANCEL_ROUNDED, icon_color= "white", on_click= lambda e: self.page.close(detail_dialog))
+        self.btn_cancel = ft.ElevatedButton(
+            "Cancel",
+            color="white",
+            bgcolor="red", 
+            icon=ft.icons.CANCEL_ROUNDED, 
+            icon_color= "white", 
+            on_click= lambda e: self.page.close(detail_dialog)
+        )
         
         return ft.AlertDialog(
             modal=True,
@@ -121,7 +165,6 @@ class CardMenuTemplate(ft.Card):
             ],
             actions_alignment=ft.MainAxisAlignment.END,
         )
-        
             
 # =============================================================================================================================#
     # #NOTE - function update UI        
@@ -155,17 +198,16 @@ class CardMenuTemplate(ft.Card):
         
         self.btn_add_to_cart.disabled = False
         self.btn_add_to_cart.bgcolor = "green"
-
-
         
+        #assign total from counter
+        self.total_qty = int(self.qty.value)
         self.page.update()
 
-        
 
     def on_hover(self, e):
         e.control.border = ft.border.all(2, "orange") if e.data == "true" else ft.border.all(3, "transparent")
-        e.control.update()
-        
+        self.page.update()
+                
     def on_click(self,e):
         global detail_dialog
         
@@ -174,4 +216,13 @@ class CardMenuTemplate(ft.Card):
         self.page.update()
         # print("clicked !!")
 
+    def handle_btn_cart(self,e):
+        global detail_dialog
+        
+        if self.total_qty > 0:
+            self.order_qty.visible = True
+            self.order_qty.content.value = self.total_qty
+        
+        self.page.close(detail_dialog)
+        self.page.update()
     # =============================================================================================================================#
