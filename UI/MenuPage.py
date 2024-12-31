@@ -10,6 +10,12 @@ with open(os.path.join(PATH_JSON, "food.json"), "r") as file_main_course:
     
 with open(os.path.join(PATH_JSON, "beverages.json"), "r") as file_beverages:
     json_beveragees = json.load(file_beverages)['data']
+        
+with open(os.path.join(PATH_JSON, "side_dish.json"), "r") as file_side_dish:
+    json_side_dish = json.load(file_side_dish)['data']
+        
+with open(os.path.join(PATH_JSON, "add_on.json"), "r") as file_add_on:
+    json_add_on = json.load(file_add_on)['data']
 
 class MenuPage(ft.Column):
     def __init__(self, page):
@@ -20,22 +26,32 @@ class MenuPage(ft.Column):
 
     def get_content_tab(self, e):
         global content_menu_row
-        index = int(e.data)
-        print(index)
-        
+        index = int(e.data)        
         content_menu_row.content.controls.clear()
-        #Main course
-        if index == 0:
+        if index == 0:        #Main course
             for data__ in json_main_course:
                 content_menu_row.content.controls.append(
                     CardMenuTemplate(self.page, data__)
             )
-        elif index == 1:  
+        elif index == 1:  #beverages
             for data__ in json_beveragees:
                 content_menu_row.content.controls.append(
                     CardMenuTemplate(self.page, data__)
             )
-        self.page.update()
+        elif index==2: #side dish
+             for data__ in json_side_dish:
+                content_menu_row.content.controls.append(
+                    CardMenuTemplate(self.page, data__)
+            )
+            
+        elif index==3: #add-on
+             for data__ in json_add_on:
+                content_menu_row.content.controls.append(
+                    CardMenuTemplate(self.page, data__)
+            )
+            
+            
+        content_menu_row.update()
 
     def build(self):
         global content_menu_row
