@@ -5,7 +5,7 @@
             "origin": "East Java",
             "description": "A rich beef soup flavored with keluak (black nut) for its distinctive dark color and unique taste.",
             "image_url": "https://asset.kompas.com/crops/RAkLCVPTiwC_qhG4W4wb1dN-uX4=/0x12:983x667/1200x800/data/photo/2023/11/17/6556dc6484a92.jpg",
-            "actual_price" : 40000,
+            "price" : 40000,
             "display_price" : "IDR 40.000"
         },
         {

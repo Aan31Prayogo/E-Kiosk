@@ -104,7 +104,7 @@ class MenuPage(ft.Column):
             padding= 0,
             content= ft.Row(
                 alignment= ft.MainAxisAlignment.CENTER,
-                run_spacing= 20,
+                run_spacing= 5,
                 spacing= 20,
                 height= 650,
                 wrap= True,

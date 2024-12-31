@@ -1,6 +1,5 @@
 import flet as ft
 
-
 class CardMenuTemplate(ft.Card):
     def __init__(self, page, json_data):
         super().__init__()
@@ -9,6 +8,8 @@ class CardMenuTemplate(ft.Card):
         self.origin = json_data['origin']
         self.description = json_data['description']
         self.image_url = json_data['image_url']
+        self.amount_total_price = 0
+        self.total_qty = 0
         
         if json_data.get('price'):
             self.price = json_data['price']
@@ -59,7 +60,8 @@ class CardMenuTemplate(ft.Card):
     
     # NOTE - Content Dialog Detail Menu
     def content_detail(self):
-        self.txt_number = ft.TextField(value="0", text_align=ft.TextAlign.CENTER, width=100)
+        self.qty = ft.TextField(value="0", text_align=ft.TextAlign.CENTER, width=80)
+        self.total_price = ft.Text("0", color="black", size=18, weight= ft.FontWeight.W_400)
 
         return ft.Container(
             width= 630,
@@ -69,15 +71,26 @@ class CardMenuTemplate(ft.Card):
                     ft.Divider(color="black", height=1),
                     ft.Text(self.description, color= "black", size= 18, weight=ft.FontWeight.W_200, italic=True),
                     ft.Row(
-                        [
-                            ft.IconButton(ft.icons.REMOVE, on_click = lambda e: self.minus_click(e)),
-                            self.txt_number,
-                            ft.IconButton(ft.icons.ADD, on_click = lambda e: self.plus_click(e)),
+                        width= self.page.window.width,
+                        controls= [
+                            ft.Row(
+                                width= 200,
+                                controls = [
+                                    ft.IconButton(ft.icons.REMOVE, on_click = lambda e: self.minus_click(e)),
+                                    self.qty,
+                                    ft.IconButton(ft.icons.ADD, on_click = lambda e: self.plus_click(e)),
+                                ],
+                                alignment=ft.MainAxisAlignment.START,
+                                spacing = 10
+                            ),
+                            self.total_price                      
                         ],
-                        alignment=ft.MainAxisAlignment.CENTER,
-                    )
+                        alignment= ft.MainAxisAlignment.START,
+                        spacing= 80  
+                    ),
                 ],
                 alignment= ft. MainAxisAlignment.START,
+                spacing= 30
             ),
         )
 
@@ -90,7 +103,8 @@ class CardMenuTemplate(ft.Card):
             title = ft.Text(self.title + " | "  + self.display_price),
             content = self.content_detail(),
             actions=[
-                ft.ElevatedButton("Close", color="white", bgcolor="red", on_click= lambda e: self.page.close(detail_dialog))
+                ft.ElevatedButton("Add to Cart", color="white", bgcolor="green", icon= ft.icons.ADD_SHOPPING_CART, icon_color="white"),
+                ft.ElevatedButton("Cancel", color="white", bgcolor="red", icon=ft.icons.CANCEL_ROUNDED, icon_color= "white", on_click= lambda e: self.page.close(detail_dialog))
             ],
             actions_alignment=ft.MainAxisAlignment.END,
         )
@@ -99,12 +113,29 @@ class CardMenuTemplate(ft.Card):
 # =============================================================================================================================#
     # #NOTE - function update UI        
     def minus_click(self,e):
-        self.txt_number.value = str(int(self.txt_number.value) - 1)
-        self.txt_number.update()
+        self.qty.value = str(int(self.qty.value) - 1)
+        self.total_price.value = str(int(self.qty.value) * self.price)
+    
+        if int(self.qty.value)<=0:
+            self.amount_total_price = 0
+            self.qty.value = str(self.amount_total_price)
+            self.total_price.value = str(self.amount_total_price)
+        else:
+            self.amount_total_price = int(self.qty.value) * self.price
+            self.qty.value = str(int(self.qty.value) - 1)
+            self.total_price.value = str(self.amount_total_price)
+
+        self.qty.update()
+        self.total_price.update()
 
     def plus_click(self,e):
-        self.txt_number.value = str(int(self.txt_number.value) + 1)
-        self.txt_number.update()
+        self.qty.value = str(int(self.qty.value) + 1)
+        # print(self.amount_total_price)
+        self.amount_total_price = int(self.qty.value) * self.price
+        self.total_price.value = str(self.amount_total_price/1000) + "00"
+        
+        self.qty.update()
+        self.total_price.update()
         
 
     def on_hover(self, e):
