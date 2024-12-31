@@ -98,13 +98,26 @@ class CardMenuTemplate(ft.Card):
     def detail_menu(self):
         global detail_dialog
         
+        self.btn_add_to_cart = ft.ElevatedButton(
+            "Add to Cart",
+            color="white",
+            bgcolor="green",
+            icon=ft.icons.ADD_SHOPPING_CART,
+            icon_color="white",
+            disabled=True
+        )
+
+        
+        self.btn_cancel = ft.ElevatedButton("Cancel", color="white", bgcolor="red", icon=ft.icons.CANCEL_ROUNDED, icon_color= "white", on_click= lambda e: self.page.close(detail_dialog))
+        
         return ft.AlertDialog(
             modal=True,
             title = ft.Text(self.title + " | "  + self.display_price),
             content = self.content_detail(),
             actions=[
-                ft.ElevatedButton("Add to Cart", color="white", bgcolor="green", icon= ft.icons.ADD_SHOPPING_CART, icon_color="white"),
-                ft.ElevatedButton("Cancel", color="white", bgcolor="red", icon=ft.icons.CANCEL_ROUNDED, icon_color= "white", on_click= lambda e: self.page.close(detail_dialog))
+                self.btn_add_to_cart,
+                self.btn_cancel
+ 
             ],
             actions_alignment=ft.MainAxisAlignment.END,
         )
@@ -120,13 +133,19 @@ class CardMenuTemplate(ft.Card):
             self.amount_total_price = 0
             self.qty.value = str(self.amount_total_price)
             self.total_price.value = str(self.amount_total_price)
+            
+            self.btn_add_to_cart.disabled = True
+            self.btn_add_to_cart.bgcolor = "gray"
+
         else:
             self.amount_total_price = int(self.qty.value) * self.price
             self.qty.value = str(int(self.qty.value) - 1)
             self.total_price.value = str(self.amount_total_price)
+            
+            self.btn_add_to_cart.disabled = False
+            self.btn_add_to_cart.bgcolor = "green"
 
-        self.qty.update()
-        self.total_price.update()
+        self.page.update()
 
     def plus_click(self,e):
         self.qty.value = str(int(self.qty.value) + 1)
@@ -134,8 +153,13 @@ class CardMenuTemplate(ft.Card):
         self.amount_total_price = int(self.qty.value) * self.price
         self.total_price.value = str(self.amount_total_price/1000) + "00"
         
-        self.qty.update()
-        self.total_price.update()
+        self.btn_add_to_cart.disabled = False
+        self.btn_add_to_cart.bgcolor = "green"
+
+
+        
+        self.page.update()
+
         
 
     def on_hover(self, e):
