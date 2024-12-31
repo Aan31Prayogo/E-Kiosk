@@ -7,6 +7,12 @@
             "image_url": "https://asset.kompas.com/crops/RAkLCVPTiwC_qhG4W4wb1dN-uX4=/0x12:983x667/1200x800/data/photo/2023/11/17/6556dc6484a92.jpg"
         },
         {
+            "name": "Coto Makassar",
+            "origin": "Makassar, South Sulawesi",
+            "description": "his hearty beef soup is renowned for its rich and savory flavors, achieved through a blend of exotic spices and ground peanuts. The dish is uniquely flavored with keluak (black nut), which imparts a distinctive dark color and earthy taste to the broth.",
+            "image_url": "https://asset.kompas.com/crops/jTy2NMcIdQrT_poGigyc8oLGfYc=/0x1226:3000x3226/1200x800/data/photo/2021/06/11/60c2acf88c6f0.jpg"
+        },
+        {
             "name": "Rendang",
             "origin": "West Sumatra",
             "description": "A slow-cooked dry curry made with beef simmered in coconut milk and a mixture of lemongrass, galangal, garlic, turmeric, ginger, and chilies.",
@@ -52,67 +58,43 @@
             "name": "Pempek",
             "origin": "Palembang, South Sumatra",
             "description": "Deep-fried fish cakes made from ground fish and tapioca, served with a tangy vinegar-based sauce.",
-            "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Pempek_Palembang.jpg"
+            "image_url": "https://www.masakapahariini.com/wp-content/uploads/2023/06/pempek-palembang.jpeg"
         },
         {
             "name": "Nasi Padang",
             "origin": "West Sumatra",
             "description": "Steamed rice served with an array of pre-cooked dishes, including curries, rendang, and sambal.",
-            "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Nasi_Padang.jpg"
+            "image_url": "https://cdn.rri.co.id/berita/1/images/1689391542821-images_(22)/1689391542821-images_(22).jpeg"
         },
         {
-            "name": "Tumpeng",
+            "name": "Nasi Tumpeng",
             "origin": "Java",
             "description": "A ceremonial dish featuring cone-shaped yellow rice surrounded by assorted side dishes.",
-            "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Tumpeng.jpg"
+            "image_url": "https://www.masakapahariini.com/wp-content/uploads/2019/08/ss.jpg"
         },
         {
             "name": "Gudeg",
             "origin": "Yogyakarta",
             "description": "A sweet stew made from young jackfruit, slow-cooked with palm sugar and coconut milk.",
-            "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Gudeg_Yogyakarta.jpg"
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Nasi_Gudeg.jpg"
         },
         {
             "name": "Opor Ayam",
             "origin": "Java",
             "description": "Chicken cooked in a rich coconut milk sauce seasoned with lemongrass, galangal, and other spices.",
-            "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Opor_Ayam.jpg"
+            "image_url": "https://assets.unileversolutions.com/recipes-v2/230519.jpg"
         },
         {
             "name": "Kerak Telor",
             "origin": "Jakarta",
             "description": "A traditional Betawi omelette made from glutinous rice, eggs, and shredded coconut, cooked over charcoal.",
-            "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Kerak_Telor.jpg"
-        },
-        {
-            "name": "Es Teler",
-            "origin": "Central Java",
-            "description": "A refreshing dessert made with young coconut, avocado, jackfruit, and sweetened coconut milk.",
-            "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Es_Teler.jpg"
+            "image_url": "https://www.dapurkobe.co.id/wp-content/uploads/kerak-telor.jpg"
         },
         {
             "name": "Bubur Ayam",
             "origin": "Nationwide",
             "description": "A savory chicken congee garnished with fried shallots, chopped scallions, and crispy crackers.",
-            "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Bubur_Ayam.jpg"
-        },
-        {
-            "name": "Martabak",
-            "origin": "Nationwide",
-            "description": "A stuffed pancake or thick pan-fried bread with sweet or savory fillings.",
-            "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Martabak_Manis.jpg"
-        },
-        {
-            "name": "Cendol",
-            "origin": "West Java",
-            "description": "An iced sweet dessert containing green rice flour jelly, coconut milk, and palm sugar syrup.",
-            "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Es_Cendol.jpg"
-        },
-        {
-            "name": "Lumpia",
-            "origin": "Semarang, Central Java",
-            "description": "Spring rolls filled with bamboo shoots, chicken, or prawns, often served with a sweet and spicy sauce.",
-            "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Lumpia_Semarang.jpg"
+            "image_url": "https://asset.kompas.com/crops/Xd5p_ptNeya-LsNQ0CxWomaW0KI=/0x0:1000x667/1200x800/data/photo/2020/07/11/5f09e008e7fee.jpg"
         }
     ]
 }

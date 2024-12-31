@@ -9,11 +9,14 @@ class HomePage(ft.Column):
     def __init__(self, page):
         super().__init__() 
         self.page = page
+
         
     def to_menu_page(self,e, flag):
         print(f"clicked {flag}")
         self.page.controls.clear()
-        self.page.add(MenuPage(self.page))
+        menu_page = MenuPage(self.page)
+        self.page.add(menu_page)
+        # self.page.update()
         
     def build(self):    
         btn_dine_in = ft.ElevatedButton(
