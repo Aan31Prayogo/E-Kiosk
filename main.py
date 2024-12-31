@@ -25,14 +25,12 @@ def main(page: ft.Page):
     def route_change(route):
         page.views.clear()
         route = page.route
-        
+
         if route =="/":
             current_route = route
         else:
             current_route = "/" + route.split("/")[1]
-        
-        print(current_route)
-        
+                
         if current_route =="/":
             page.views.append( ft.View("/",[
                         CustomAppBar.HeaderAppBar(),

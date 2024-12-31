@@ -44,5 +44,5 @@ class CardMenuTemplate(ft.Card):
         return self.content
 
     def on_hover(self, e):
-        e.control.border = ft.border.all(2, "#eb8934") if e.data == "true" else ft.border.all(3, "transparent")
+        e.control.border = ft.border.all(2, "orange") if e.data == "true" else ft.border.all(3, "transparent")
         e.control.update()
