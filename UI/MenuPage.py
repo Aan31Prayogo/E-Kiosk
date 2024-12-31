@@ -100,7 +100,8 @@ class MenuPage(ft.Column):
         content_menu_row = ft.Container(
             width=self.page.window.width,
             height=650,
-            alignment= ft.alignment.top_left,
+            alignment= ft.alignment.center_left,
+            padding= 0,
             content= ft.Row(
                 alignment= ft.MainAxisAlignment.CENTER,
                 run_spacing= 20,
@@ -108,7 +109,7 @@ class MenuPage(ft.Column):
                 height= 650,
                 wrap= True,
                 width= self.page.window.width,
-                scroll=ft.ScrollMode.ADAPTIVE,
+                scroll=ft.ScrollMode.AUTO,
                 controls=[]
             )
         )
@@ -116,8 +117,9 @@ class MenuPage(ft.Column):
         #NOTE - Summary row
         row_btn_and_summary = ft.Container(
             alignment=ft.alignment.center_left,
-            width=820,
+            width=self.page.window.width,
             height=65,
+            padding= 0,
             bgcolor="#383838",
             content=ft.Row(
                 alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
@@ -129,32 +131,36 @@ class MenuPage(ft.Column):
                         style=ft.ButtonStyle(color="white"),
                         on_click= lambda e: self.func_btn_back(e)
                     ),
-                    ft.Text(self.flag, color="white", size = 24, weight=ft.FontWeight.W_400),
+                    ft.Row(
+                        controls = [
+                            ft.Text(self.flag + " |", color="white", size = 18, weight=ft.FontWeight.W_400),
+                            ft.Column(
+                                width=80,
+                                alignment=ft.MainAxisAlignment.CENTER,
+                                horizontal_alignment=ft.CrossAxisAlignment.START,
+                                spacing=5,
+                                controls=[
+                                    ft.Text("IDR : ", color="white", weight=ft.FontWeight.W_400),
+                                    ft.Text("Item(s) : ", color="white", weight=ft.FontWeight.W_400),
+                                ],
+                            ),
+                        ]
+                    ),
                     ft.TextButton(
                         text="NEXT",
                         icon=ft.icons.NAVIGATE_NEXT,
                         style=ft.ButtonStyle(color="white"),
                     ),
-
-                    # ft.Column(
-                    #     width=80,
-                    #     alignment=ft.MainAxisAlignment.CENTER,
-                    #     horizontal_alignment=ft.CrossAxisAlignment.END,
-                    #     spacing=5,
-                    #     controls=[
-                    #         ft.Text("IDR : ", color="white", weight=ft.FontWeight.W_700),
-                    #         ft.Text("Item(s) : ", color="white", weight=ft.FontWeight.W_700),
-                    #     ],
-                    # ),
                 ],
             ),
         )
 
         #NOTE - Main view
         view_menu_page = ft.Column(
-            width=self.page.width,
+            width=self.page.window.width,
             controls=[ row_tab_menu, content_menu_row, row_btn_and_summary],
             spacing=0,
+            alignment= ft.MainAxisAlignment.START
         )
                 
         for data__ in json_main_course:
