@@ -14,7 +14,7 @@ class HomePage(ft.Column):
     def to_menu_page(self,e, flag):
         print(f"clicked {flag}")
         self.page.controls.clear()
-        menu_page = MenuPage(self.page)
+        menu_page = MenuPage(self.page, flag)
         self.page.add(menu_page)
         # self.page.update()
         
@@ -26,7 +26,7 @@ class HomePage(ft.Column):
             bgcolor=self.COLOR_BTN,
             color=self.COLOR_TEXT,
             icon=ft.icons.RESTAURANT_MENU,
-            on_click= lambda e: self.to_menu_page(e, flag="dine in")
+            on_click= lambda e: self.to_menu_page(e, flag="DINE IN")
         )
 
         btn_take_away = ft.ElevatedButton(
@@ -36,7 +36,7 @@ class HomePage(ft.Column):
             bgcolor=self.COLOR_BTN,
             color=self.COLOR_TEXT,
             icon=ft.icons.LOGOUT_SHARP,
-            on_click= lambda e: self.to_menu_page(e, flag="take away")
+            on_click= lambda e: self.to_menu_page(e, flag="TAKE AWAY")
         )
 
         column = ft.Column(

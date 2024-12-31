@@ -33,7 +33,7 @@ def main(page: ft.Page):
         ]
     )
     
-    page.add(MenuPage(page).build())
+    page.add(HomePage(page))
 
 if __name__ == '__main__':
     ft.app(target=main)

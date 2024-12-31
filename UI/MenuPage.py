@@ -18,11 +18,12 @@ with open(os.path.join(PATH_JSON, "add_on.json"), "r") as file_add_on:
     json_add_on = json.load(file_add_on)['data']
 
 class MenuPage(ft.Column):
-    def __init__(self, page):
+    def __init__(self, page, flag):
         if page is None:
             raise ValueError("Page instance cannot be None.")
         super().__init__()
         self.page = page
+        self.flag = flag
 
     def get_content_tab(self, e):
         global content_menu_row
@@ -71,7 +72,7 @@ class MenuPage(ft.Column):
         tab_add_on = ft.Tab(
             text="Add - on",
         )
-
+        
         #NOTE - ROw containt tab
         row_tab_menu = ft.Container(
             width=self.page.window.width,
@@ -109,7 +110,7 @@ class MenuPage(ft.Column):
         )
 
         #NOTE - Summary row
-        row_summary = ft.Container(
+        row_btn_and_summary = ft.Container(
             alignment=ft.alignment.center_left,
             width=820,
             height=65,
@@ -118,21 +119,28 @@ class MenuPage(ft.Column):
                 alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
                 vertical_alignment=ft.CrossAxisAlignment.CENTER,
                 controls=[
-                    ft.Column(
-                        width=80,
-                        alignment=ft.MainAxisAlignment.CENTER,
-                        horizontal_alignment=ft.CrossAxisAlignment.END,
-                        spacing=5,
-                        controls=[
-                            ft.Text("IDR : ", color="white", weight=ft.FontWeight.W_700),
-                            ft.Text("Item(s) : ", color="white", weight=ft.FontWeight.W_700),
-                        ],
+                    ft.TextButton(
+                        text="BACK",
+                        icon=ft.icons.NAVIGATE_BEFORE,
+                        style=ft.ButtonStyle(color="white"),
                     ),
+                    ft.Text(self.flag, color="white", size = 24, weight=ft.FontWeight.W_400),
                     ft.TextButton(
                         text="NEXT",
                         icon=ft.icons.NAVIGATE_NEXT,
                         style=ft.ButtonStyle(color="white"),
                     ),
+
+                    # ft.Column(
+                    #     width=80,
+                    #     alignment=ft.MainAxisAlignment.CENTER,
+                    #     horizontal_alignment=ft.CrossAxisAlignment.END,
+                    #     spacing=5,
+                    #     controls=[
+                    #         ft.Text("IDR : ", color="white", weight=ft.FontWeight.W_700),
+                    #         ft.Text("Item(s) : ", color="white", weight=ft.FontWeight.W_700),
+                    #     ],
+                    # ),
                 ],
             ),
         )
@@ -140,7 +148,7 @@ class MenuPage(ft.Column):
         #NOTE - Main view
         view_menu_page = ft.Column(
             width=self.page.width,
-            controls=[row_tab_menu, content_menu_row, row_summary],
+            controls=[ row_tab_menu, content_menu_row, row_btn_and_summary],
             spacing=0,
         )
         
