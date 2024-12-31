@@ -53,6 +53,10 @@ class MenuPage(ft.Column):
             
             
         content_menu_row.update()
+        
+    #NOTE - CAllback btn
+    def func_btn_back(self,e):
+        self.page.go("/")
 
     def build(self):
         global content_menu_row
@@ -123,6 +127,7 @@ class MenuPage(ft.Column):
                         text="BACK",
                         icon=ft.icons.NAVIGATE_BEFORE,
                         style=ft.ButtonStyle(color="white"),
+                        on_click= lambda e: self.func_btn_back(e)
                     ),
                     ft.Text(self.flag, color="white", size = 24, weight=ft.FontWeight.W_400),
                     ft.TextButton(
@@ -151,7 +156,7 @@ class MenuPage(ft.Column):
             controls=[ row_tab_menu, content_menu_row, row_btn_and_summary],
             spacing=0,
         )
-        
+                
         for data__ in json_main_course:
             content_menu_row.content.controls.append(
                 CardMenuTemplate(self.page, data__)

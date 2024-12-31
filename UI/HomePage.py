@@ -1,7 +1,6 @@
 import flet as ft
 from UI.MenuPage import MenuPage
 
-
 class HomePage(ft.Column):
     COLOR_BTN = "#403f3c"
     COLOR_TEXT = "#ffffff"
@@ -12,10 +11,7 @@ class HomePage(ft.Column):
 
         
     def to_menu_page(self,e, flag):
-        print(f"clicked {flag}")
-        self.page.controls.clear()
-        menu_page = MenuPage(self.page, flag)
-        self.page.add(menu_page)
+        self.page.go(f"/MenuPage/{flag}")
         # self.page.update()
         
     def build(self):    
