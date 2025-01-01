@@ -4,7 +4,7 @@ from UI.HomePage import HomePage
 from UI.MenuPage import MenuPage
 from UI.DetailSummaryPage import DetailSummary
 import UI.CustomAppBar as CustomAppBar
-
+from UI.DetailSummaryPage import DetailSummary
 
 WINDOW_COLOR = "#fefefe"
 def main(page: ft.Page):
@@ -64,7 +64,6 @@ def main(page: ft.Page):
     page.on_route_change = route_change
     page.on_view_pop = view_pop
     page.go(page.route)
-    
 
 if __name__ == '__main__':
     ft.app(target=main)

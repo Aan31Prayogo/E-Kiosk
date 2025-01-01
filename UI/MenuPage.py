@@ -39,8 +39,7 @@ class MenuPage(ft.Column):
         # get query result after change tab
         # aim to update the ui view
         ordered_data = utility.get_order_data_by_name({'customer_name':self.cust_name})
-        print(ordered_data)
-        
+                
         content_menu_row.content.controls.clear()
         if index == 0:        #Main course
             for data__ in json_main_course:
@@ -72,9 +71,8 @@ class MenuPage(ft.Column):
         utility.delete_data_order()
         self.page.go("/")
     
-    def to_detail_page(self,e,data):
-        print(data)
-        self.page.go(f"/DetailPage/{data}")
+    def to_detail_page(self,e,cust_name):
+        self.page.go(f"/DetailPage/{cust_name}")
 
     def build(self):
         global content_menu_row
@@ -169,7 +167,7 @@ class MenuPage(ft.Column):
                         text="NEXT",
                         icon=ft.icons.NAVIGATE_NEXT,
                         style=ft.ButtonStyle(color="white"),
-                        on_click= lambda e: self.to_detail_page(e,selected_item)
+                        on_click= lambda e: self.to_detail_page(e, self.cust_name)
                     ),
                 ],
             ),
