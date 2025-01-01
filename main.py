@@ -59,7 +59,7 @@ def main(page: ft.Page):
 
     #NOTE - SplashSCreen
     page.add(SplashView(page))
-    time.sleep(3)
+    time.sleep(5)
     page.views.clear()
 
     def view_pop(view):
@@ -73,4 +73,5 @@ def main(page: ft.Page):
     page.go(page.route)
     
 if __name__ == '__main__':
-    ft.app(target=main)
+    # ft.app(target=main)
+    utility.print_receip("adwad")

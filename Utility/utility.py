@@ -2,6 +2,19 @@ import sqlite3
 import ctypes
 from typing import List
 import os
+from escpos.printer import Serial
+from datetime import datetime
+
+printer = 'COM5'
+
+p = Serial(devfile=printer,
+           baudrate=115200,
+           bytesize=8,
+           parity='N',
+           stopbits=1,
+           timeout=1.00,
+           dsrdtr=True)
+
 
 db_name= os.path.join(os.getcwd(), "database", "restaurant.db")
 
@@ -95,3 +108,23 @@ def get_screen_resolution() -> List[int]:
     screensize = [user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)]
     # print(screensize)
     return screensize
+
+
+#Printer function
+
+def get_datetime():
+    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+def print_receip(data):
+    try:
+        p.set(align='center')
+        p.text("E-Kiosk System\n")
+        p.text("Prayogo's Kitchen\n")
+        p.text(str(get_datetime()))
+        p.text("\n")
+        p.text("-------------------------------\n")
+        p.text("-------------------------------\n")
+        p.close()    
+    except Exception as e:
+        print(f"error print {e}")
+    
