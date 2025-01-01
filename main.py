@@ -58,20 +58,19 @@ def main(page: ft.Page):
         page.update()
 
     #NOTE - SplashSCreen
-    # page.add(SplashView(page))
-    # time.sleep(3)
-    # page.views.clear()
+    page.add(SplashView(page))
+    time.sleep(3)
+    page.views.clear()
 
-    # def view_pop(view):
-    #     page.views.pop()
-    #     top_view = page.views[-1]
-    #     page.go(top_view.route)
+    def view_pop(view):
+        page.views.pop()
+        top_view = page.views[-1]
+        page.go(top_view.route)
 
 
-    # page.on_route_change = route_change
-    # page.on_view_pop = view_pop
-    # page.go(page.route)
+    page.on_route_change = route_change
+    page.on_view_pop = view_pop
+    page.go(page.route)
     
-    page.add(DetailSummary(page,"aan","DINE IN"))
 if __name__ == '__main__':
     ft.app(target=main)

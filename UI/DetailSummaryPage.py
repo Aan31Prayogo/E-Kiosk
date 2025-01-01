@@ -1,7 +1,7 @@
 import flet as ft
 from typing import List
 from Utility import utility
-
+import time
 
 def spacer(height__):
     return ft.Container(
@@ -72,10 +72,37 @@ class DetailSummary(ft.Column):
             self.btn_order.style = ft.ButtonStyle(bgcolor="green")
         
         self.page.update()
-            
+    
+    
+    def __back_to_home(self,e):
+        print(e.data)
+        self.page.go("/")
+
+    def __handle_btn_order(self,e):
+        dialog__ = self.__order_dialog()
+        self.page.open(dialog__)
+        self.page.update()
+        time.sleep(3)
+        dialog__.content = ft.Lottie(
+            src= "https://lottie.host/0a473499-789f-447e-aacf-96628a1e4054/wCgGvp6UbC.json",
+            reverse= False
+        )
+        dialog__.title = ft.Text("           Order Succesful", color="#403f3c", weight=ft.FontWeight.W_700)
+        dialog__.actions=[
+            ft.ElevatedButton("Finish", bgcolor="green", color="white", on_click=lambda e: self.__back_to_home(e))
+        ]
+        self.page.update()
+
+    
+    def __order_dialog(self):
+        return ft.AlertDialog(
+            modal= True,
+            title=ft.Text("                 Loading", color="#403f3c", weight=ft.FontWeight.W_400),
+            content = ft.ProgressBar(width= 400, color="amber")
+        )
+           
     def build(self):
-              
-        
+        # NOTE - Header
         self.txt_cust_name = ft.Text(
             f"Cust. Name: {self.cust_name}",
             color="#403f3c", 
@@ -155,15 +182,19 @@ class DetailSummary(ft.Column):
             )
         )
         
+        #NOTE - Order item list
         self.column_item_list = ft.Column(
             height=400,
             controls= self.control__,
             scroll=ft.ScrollMode.ALWAYS,
         )
         
+        
+        #NOTE- btn payemnt and order
         self.table_number = ft.TextField(
             label="Your Table Number",
             border_color= "#403f3c",
+            focused_border_color="black",
             width=200,
             icon= ft.icons.TABLE_BAR,
             border_width = 2,
@@ -176,6 +207,7 @@ class DetailSummary(ft.Column):
             border_width=2,
             width=200,
             icon=ft.icons.PAYMENT,
+            focused_border_color="black",
             options=[
                 ft.dropdown.Option("Cash"),
                 ft.dropdown.Option("QR Code"),
@@ -202,7 +234,7 @@ class DetailSummary(ft.Column):
             color="white",
             icon=ft.icons.SEND,
             disabled=True,
-            on_click=lambda e: print(e),
+            on_click=lambda e: self.__handle_btn_order(e),
             style=ft.ButtonStyle(
                 bgcolor="gray"
             )
@@ -214,6 +246,8 @@ class DetailSummary(ft.Column):
             controls=[self.btn_order]
         )
         
+        
+        #NOTE - Main View
         self.container_view =  ft.Column(
                 width= self.page.window.width - 20,
                 spacing=10,
