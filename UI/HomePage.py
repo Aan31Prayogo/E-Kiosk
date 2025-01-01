@@ -54,7 +54,9 @@ class HomePage(ft.Column):
             border_radius=4,
             border_width=2,
             on_change= lambda e: handle_field_cust_name(e),
-            capitalization=ft.TextCapitalization.CHARACTERS
+            capitalization=ft.TextCapitalization.CHARACTERS,
+            focused_border_color="amber",
+            focused_border_width=4
         )
          
         btn_dine_in = ft.ElevatedButton(

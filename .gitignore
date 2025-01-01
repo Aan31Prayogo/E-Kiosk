@@ -54,4 +54,4 @@ Thumbs.db
 database/restaurant.db
 /UI/__pycache__/
 /Utility/__pycache__/
-UI/__pycache__/*
+UI/__pycache__/

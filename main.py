@@ -1,10 +1,12 @@
 import flet as ft
+import time
 from Utility import utility
 from UI.HomePage import HomePage
 from UI.MenuPage import MenuPage
 from UI.DetailSummaryPage import DetailSummary
-import UI.CustomAppBar as CustomAppBar
 from UI.DetailSummaryPage import DetailSummary
+import UI.CustomAppBar as CustomAppBar
+from UI.SplashScreen import SplashView
 
 WINDOW_COLOR = "#fefefe"
 def main(page: ft.Page):
@@ -55,15 +57,21 @@ def main(page: ft.Page):
             )
         page.update()
 
-    def view_pop(view):
-        page.views.pop()
-        top_view = page.views[-1]
-        page.go(top_view.route)
+    #NOTE - SplashSCreen
+    # page.add(SplashView(page))
+    # time.sleep(3)
+    # page.views.clear()
+
+    # def view_pop(view):
+    #     page.views.pop()
+    #     top_view = page.views[-1]
+    #     page.go(top_view.route)
 
 
-    page.on_route_change = route_change
-    page.on_view_pop = view_pop
-    page.go(page.route)
-
+    # page.on_route_change = route_change
+    # page.on_view_pop = view_pop
+    # page.go(page.route)
+    
+    page.add(DetailSummary(page,"aan","DINE IN"))
 if __name__ == '__main__':
     ft.app(target=main)

@@ -96,7 +96,7 @@ class CardMenuTemplate(ft.Card):
         )
 
         # print(self.title)
-        self.elevation = 60
+        self.elevation = 40
         return self.content
     
     # NOTE - Content Dialog Detail Menu
