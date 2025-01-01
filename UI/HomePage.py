@@ -32,6 +32,19 @@ class HomePage(ft.Column):
                 btn_take_away.style = ft.ButtonStyle(bgcolor=self.COLOR_BTN_DISABLED)
                 
             self.page.update()
+            
+        txt_opening = ft.Text("WELCOME TO OUR RESTAURANT", color="#403f3c", size=20, text_align=ft.TextAlign.START, weight= ft.FontWeight.W_900)
+        txt_sub_opening = ft.Text("       Your Specialty in Indonesian Cuisine", color="#403f3c", size=16, text_align=ft.TextAlign.CENTER, weight= ft.FontWeight.W_500)
+        
+        column_opening = ft.Column(
+            controls=[
+                txt_opening,
+                txt_sub_opening
+            ],
+            tight=True,
+            spacing=0,
+            alignment=ft.MainAxisAlignment.CENTER
+        )
         
         field_customer_name = ft.TextField(
             label= "Enter Your Name",
@@ -75,9 +88,12 @@ class HomePage(ft.Column):
             spacing= 30,
             width = self.page.window.width,
             height= self.page.window.height, 
-            controls=[field_customer_name,
-                      btn_dine_in, 
-                      btn_take_away],
+            controls = [
+                column_opening,
+                field_customer_name,
+                btn_dine_in, 
+                btn_take_away
+            ],
             alignment=ft.MainAxisAlignment.CENTER,
             horizontal_alignment= ft.CrossAxisAlignment.CENTER
         )
