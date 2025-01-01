@@ -71,8 +71,8 @@ class MenuPage(ft.Column):
         utility.delete_data_order()
         self.page.go("/")
     
-    def to_detail_page(self,e,cust_name):
-        self.page.go(f"/DetailPage/{cust_name}")
+    def to_detail_page(self,e):
+        self.page.go(f"/DetailPage/{self.cust_name}/{self.flag}")
 
     def build(self):
         global content_menu_row
@@ -167,7 +167,7 @@ class MenuPage(ft.Column):
                         text="NEXT",
                         icon=ft.icons.NAVIGATE_NEXT,
                         style=ft.ButtonStyle(color="white"),
-                        on_click= lambda e: self.to_detail_page(e, self.cust_name)
+                        on_click= lambda e: self.to_detail_page(e)
                     ),
                 ],
             ),

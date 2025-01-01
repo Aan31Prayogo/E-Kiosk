@@ -49,7 +49,7 @@ def main(page: ft.Page):
         elif current_route=="/DetailPage":   
             page.views.append( ft.View( "/DetailPage", [
                         CustomAppBar.HeaderAppBar(),
-                        DetailSummary(page,route.split("/")[2])
+                        DetailSummary(page,route.split("/")[2],route.split("/")[3])
                     ]
                 )
             )

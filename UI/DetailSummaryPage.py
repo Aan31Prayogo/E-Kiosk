@@ -43,13 +43,14 @@ class RowData(ft.Column):
         
 
 class DetailSummary(ft.Column):
-    def __init__(self, page: ft.Page, cust_name:str):
+    def __init__(self, page: ft.Page, cust_name:str, flag:str):
         super().__init__()
         self.page = page
         self.cust_name = cust_name
         self.total_items = 0
         self.grand_total = 0
         self.control__ =[]
+        self.flag = flag
         
         result = utility.get_order_data_by_name({'customer_name': self.cust_name})        
         
@@ -74,6 +75,15 @@ class DetailSummary(ft.Column):
             text_align=ft.TextAlign.START,
             weight= ft.FontWeight.W_400
         )
+        
+        self.txt_flag = ft.Text(
+            self.flag ,
+            color="#403f3c", 
+            size=16, 
+            text_align=ft.TextAlign.START,
+            weight= ft.FontWeight.W_400
+        )
+        
         
         self.txt_grand_total = ft.Text(
             f"Grand Total (IDR) : {self.grand_total/1000}00" ,
@@ -100,7 +110,7 @@ class DetailSummary(ft.Column):
                     width= 200,
                     alignment= ft.MainAxisAlignment.START,
                     controls=[
-                        ft.Text(""),
+                        self.txt_flag,
                         self.txt_grand_total
                     ]
                 )
@@ -134,19 +144,52 @@ class DetailSummary(ft.Column):
             controls= self.control__,
             scroll=ft.ScrollMode.ALWAYS,
         )
-            
+        
+        self.table_number = ft.TextField(
+            label="Your Table Number",
+            border_color= "green",
+            width=200,
+            icon= ft.icons.TABLE_BAR,
+            border_width = 2,
+            keyboard_type= ft.KeyboardType.NUMBER
+        )
+        
+        self.payment_option= ft.Dropdown(
+            border_color="amber",
+            border_width=2,
+            width=200,
+            icon=ft.icons.PAYMENT,
+            options=[
+                ft.dropdown.Option("Cash"),
+                ft.dropdown.Option("QR Code"),
+                ft.dropdown.Option("Debit Card"),
+            ],
+            label="Paymennt Option"
+        )
+        
+        self.row_table_and_payment = ft.Row(
+            width = self.page.window.width,
+            alignment= ft.MainAxisAlignment.CENTER,
+            spacing= 40,
+            controls=[
+                self.table_number,
+                self.payment_option,
+            ]
+        )
         
         self.container_view =  ft.Column(
                 width= self.page.window.width - 20,
                 spacing=10,
-                height= 400,
+                height= self.page.window.height,
                 alignment= ft.MainAxisAlignment.START,
                 controls=[
                     self.row_txt_info,
                     ft.Divider(color="black",height=2, thickness=6),
                     spacer(20),
                     self.header_list,
-                    self.column_item_list
+                    self.column_item_list,
+                    spacer(10),
+                    self.row_table_and_payment
                 ]
                 
             )
