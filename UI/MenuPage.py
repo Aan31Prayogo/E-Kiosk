@@ -2,6 +2,8 @@ import flet as ft
 import json
 import os
 from UI.CardMenuTemplate import CardMenuTemplate
+from Utility import utility
+
 
 
 PATH_JSON = os.path.join(os.getcwd(), "json_file")
@@ -22,45 +24,44 @@ amount_selected_item = 0
 selected_item = []
 
 class MenuPage(ft.Column):
-    def __init__(self, page:ft.Page, flag:str):
+    def __init__(self, page:ft.Page, flag:str, cust_name:str):
         if page is None:
             raise ValueError("Page instance cannot be None.")
         super().__init__()
         self.page = page
         self.flag = flag
+        self.cust_name = cust_name                
 
     def get_content_tab(self, e):
         global content_menu_row
         index = int(e.data)
         
-        #loop data inside the contnet menu
-        for data in content_menu_row.content.controls:
-            if data.total_qty > 0:
-                selected_item.append(data.ordered_data)
-        
-        print(selected_item)
+        # get query result after change tab
+        # aim to update the ui view
+        ordered_data = utility.get_order_data_by_name({'customer_name':self.cust_name})
+        print(ordered_data)
         
         content_menu_row.content.controls.clear()
         if index == 0:        #Main course
             for data__ in json_main_course:
                 content_menu_row.content.controls.append(
-                    CardMenuTemplate(self.page, data__, selected_item)
+                    CardMenuTemplate(self.page, data__, self.cust_name, ordered_data)
             )
         elif index == 1:  #beverages
             for data__ in json_beveragees:
                 content_menu_row.content.controls.append(
-                    CardMenuTemplate(self.page, data__, selected_item)
+                    CardMenuTemplate(self.page, data__, self.cust_name, ordered_data)
             )
         elif index==2: #side dish
              for data__ in json_side_dish:
                 content_menu_row.content.controls.append(
-                    CardMenuTemplate(self.page, data__, selected_item)
+                    CardMenuTemplate(self.page, data__,self.cust_name, ordered_data)
             )
             
         elif index==3: #add-on
              for data__ in json_add_on:
                 content_menu_row.content.controls.append(
-                    CardMenuTemplate(self.page, data__, selected_item)
+                    CardMenuTemplate(self.page, data__, self.cust_name)
             )
 
 
@@ -68,10 +69,16 @@ class MenuPage(ft.Column):
         
     #NOTE - CAllback btn
     def func_btn_back(self,e):
+        utility.delete_data_order()
         self.page.go("/")
+    
+    def to_detail_page(self,e,data):
+        print(data)
+        self.page.go(f"/DetailPage/{data}")
 
     def build(self):
         global content_menu_row
+        global row_btn_and_summary
         
         tab_main_course = ft.Tab(
             text="Main Course",
@@ -145,7 +152,7 @@ class MenuPage(ft.Column):
                     ),
                     ft.Row(
                         controls = [
-                            ft.Text(self.flag , color="white", size = 18, weight=ft.FontWeight.W_400),
+                            ft.Text(self.flag + " | " + self.cust_name , color="white", size = 18, weight=ft.FontWeight.W_400),
                             # ft.Column(
                             #     width=80,
                             #     alignment=ft.MainAxisAlignment.CENTER,
@@ -162,6 +169,7 @@ class MenuPage(ft.Column):
                         text="NEXT",
                         icon=ft.icons.NAVIGATE_NEXT,
                         style=ft.ButtonStyle(color="white"),
+                        on_click= lambda e: self.to_detail_page(e,selected_item)
                     ),
                 ],
             ),
@@ -177,7 +185,7 @@ class MenuPage(ft.Column):
                 
         for data__ in json_main_course:
             content_menu_row.content.controls.append(
-                CardMenuTemplate(self.page, data__)
+                CardMenuTemplate(self.page, data__, self.cust_name)
             )    
 
         return view_menu_page

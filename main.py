@@ -2,6 +2,7 @@ import flet as ft
 from Utility import utility
 from UI.HomePage import HomePage
 from UI.MenuPage import MenuPage
+from UI.DetailSummaryPage import DetailSummary
 import UI.CustomAppBar as CustomAppBar
 
 
@@ -40,7 +41,15 @@ def main(page: ft.Page):
         elif current_route=="/MenuPage":   
             page.views.append( ft.View( "/MenuPage", [
                         CustomAppBar.HeaderAppBar(),
-                        MenuPage(page,route.split("/")[2]),
+                        MenuPage(page,route.split("/")[2],route.split("/")[3]),
+                    ]
+                )
+            )
+            
+        elif current_route=="/DetailPage":   
+            page.views.append( ft.View( "/DetailPage", [
+                        CustomAppBar.HeaderAppBar(),
+                        DetailSummary(page,route.split("/")[2])
                     ]
                 )
             )
@@ -55,6 +64,7 @@ def main(page: ft.Page):
     page.on_route_change = route_change
     page.on_view_pop = view_pop
     page.go(page.route)
+    
 
 if __name__ == '__main__':
     ft.app(target=main)

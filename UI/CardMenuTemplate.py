@@ -1,9 +1,9 @@
 import flet as ft
 from typing import List, Optional
-
+from Utility import utility
 
 class CardMenuTemplate(ft.Card):
-    def __init__(self, page: ft.Page, json_data: dict, selected_data: Optional[List[dict]] = None):
+    def __init__(self, page: ft.Page, json_data: dict, cust_name:str, selected_data: Optional[List[dict]] = None):
         super().__init__()
         self.page = page
         self.parameter = json_data
@@ -14,9 +14,10 @@ class CardMenuTemplate(ft.Card):
         self.amount_total_price = 0
         self.total_qty = 0
         self.order_data = {}
+        self.cust_name = cust_name
         
-        self.price = json_data.get('price', 1000)
-        self.display_price = json_data.get('display_price', "IDR 1.000")
+        self.price = json_data.get('price', 3000)
+        self.display_price = json_data.get('display_price', "IDR 3.000")
         
         
         if selected_data is not None and len(selected_data) > 0:
@@ -47,10 +48,10 @@ class CardMenuTemplate(ft.Card):
             alignment= ft.alignment.center,
             content = ft.Text(
                 "",
-                color="#ffffff",
+                color="yellow",
                 size=18,
                 text_align=ft.TextAlign.CENTER,
-                weight= ft.FontWeight.W_400
+                weight= ft.FontWeight.W_700
             )
         )
         
@@ -244,6 +245,9 @@ class CardMenuTemplate(ft.Card):
         self.order_data['qty'] = self.total_qty
         self.order_data['price'] = self.price
         self.order_data['total_price'] = self.amount_total_price
+        self.order_data['customer_name'] = self.cust_name
+        
+        utility.handle_order_data(self.order_data)
                     
         self.page.close(detail_dialog)
         self.page.update()

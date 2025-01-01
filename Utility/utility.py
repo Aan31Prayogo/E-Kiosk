@@ -1,6 +1,94 @@
+import sqlite3
 import ctypes
 from typing import List
+import os
 
+db_name= os.path.join(os.getcwd(), "database", "restaurant.db")
+
+def get_conn():
+    conn=sqlite3.connect(db_name)
+    conn.row_factory = dict_factory
+    return conn
+
+def dict_factory(cursor,row):
+    d={}
+    for idx,col in enumerate(cursor.description):
+        d[col[0]] = row[idx]
+    return d
+
+
+def update_order_data(param):
+    try:
+        sql = 'UPDATE FoodOrder SET qty=:qty , total_price=:total_price WHERE customer_name=:customer_name AND item_name=:item_name'
+        conn = get_conn()
+        curssor = conn.cursor()
+        curssor.execute(sql,param)
+        conn.commit()
+        return True
+    except Exception as e:
+        print("failed INSERT db ERROR : ", e)
+    
+def insert_order_data(param):
+    try:
+        sql = 'INSERT INTO FoodOrder (item_name, qty, price, total_price, customer_name) VALUES (:item_name, :qty, :price, :total_price, :customer_name)'
+        conn = get_conn()
+        curssor = conn.cursor()
+        curssor.execute(sql,param)
+        conn.commit()
+        return True
+    except Exception as e:
+        print("failed INSERT db ERROR : ", e)
+        
+def handle_order_data(param):
+    try:
+        data_exist = get_order_data_by_name_and_item(param)
+        
+        #data already exist, we wiil update it
+        if len(data_exist) > 0:
+            update_order_data(param)
+        else:
+            insert_order_data(param)
+    except Exception as e:
+        print("failed INSERT db ERROR : ", e)
+        
+def get_order_data_by_name_and_item(param):
+    try:
+        sql = 'SELECT * FROM FoodOrder WHERE customer_name=:customer_name AND item_name=:item_name'
+        conn = get_conn()
+        curssor = conn.cursor()
+        curssor.execute(sql,param)
+        result = curssor.fetchall()
+        return result
+    except Exception as e:
+        print("FAILED get parking by id => " + str(e))
+        return False
+    
+def get_order_data_by_name(param):
+    try:
+        sql = 'SELECT * FROM FoodOrder WHERE customer_name=:customer_name'
+        conn = get_conn()
+        curssor = conn.cursor()
+        curssor.execute(sql,param)
+        result = curssor.fetchall()
+        return result
+    except Exception as e:
+        print("FAILED get parking by id => " + str(e))
+        return False
+    
+def delete_data_order():
+    try:
+        sql = 'DELETE FROM FoodOrder'
+        conn = get_conn()
+        curssor = conn.cursor()
+        curssor.execute(sql,{})
+        conn.commit()
+        return True
+    except Exception as e:
+        print("FAILED get parking by id => " + str(e))
+        return False
+
+
+# DISPALY RESOLUTION
 def get_screen_resolution() -> List[int]:
     # return width, height of screen
     user32 = ctypes.windll.user32
