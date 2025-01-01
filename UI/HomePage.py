@@ -36,7 +36,7 @@ class HomePage(ft.Column):
         )
 
         column = ft.Column(
-            spacing= 20,
+            spacing= 30,
             width = self.page.window.width,
             height= self.page.window.height, 
             controls=[btn_dine_in, 

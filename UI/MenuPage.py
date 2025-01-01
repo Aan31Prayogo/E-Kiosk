@@ -3,6 +3,7 @@ import json
 import os
 from UI.CardMenuTemplate import CardMenuTemplate
 
+
 PATH_JSON = os.path.join(os.getcwd(), "json_file")
 
 with open(os.path.join(PATH_JSON, "food.json"), "r") as file_main_course:
@@ -16,9 +17,12 @@ with open(os.path.join(PATH_JSON, "side_dish.json"), "r") as file_side_dish:
         
 with open(os.path.join(PATH_JSON, "add_on.json"), "r") as file_add_on:
     json_add_on = json.load(file_add_on)['data']
+    
+amount_selected_item = 0
+selected_item = []
 
 class MenuPage(ft.Column):
-    def __init__(self, page, flag):
+    def __init__(self, page:ft.Page, flag:str):
         if page is None:
             raise ValueError("Page instance cannot be None.")
         super().__init__()
@@ -27,31 +31,39 @@ class MenuPage(ft.Column):
 
     def get_content_tab(self, e):
         global content_menu_row
-        index = int(e.data)        
+        index = int(e.data)
+        
+        #loop data inside the contnet menu
+        for data in content_menu_row.content.controls:
+            if data.total_qty > 0:
+                selected_item.append(data.ordered_data)
+        
+        print(selected_item)
+        
         content_menu_row.content.controls.clear()
         if index == 0:        #Main course
             for data__ in json_main_course:
                 content_menu_row.content.controls.append(
-                    CardMenuTemplate(self.page, data__)
+                    CardMenuTemplate(self.page, data__, selected_item)
             )
         elif index == 1:  #beverages
             for data__ in json_beveragees:
                 content_menu_row.content.controls.append(
-                    CardMenuTemplate(self.page, data__)
+                    CardMenuTemplate(self.page, data__, selected_item)
             )
         elif index==2: #side dish
              for data__ in json_side_dish:
                 content_menu_row.content.controls.append(
-                    CardMenuTemplate(self.page, data__)
+                    CardMenuTemplate(self.page, data__, selected_item)
             )
             
         elif index==3: #add-on
              for data__ in json_add_on:
                 content_menu_row.content.controls.append(
-                    CardMenuTemplate(self.page, data__)
+                    CardMenuTemplate(self.page, data__, selected_item)
             )
-            
-            
+
+
         content_menu_row.update()
         
     #NOTE - CAllback btn
@@ -133,17 +145,17 @@ class MenuPage(ft.Column):
                     ),
                     ft.Row(
                         controls = [
-                            ft.Text(self.flag + " |", color="white", size = 18, weight=ft.FontWeight.W_400),
-                            ft.Column(
-                                width=80,
-                                alignment=ft.MainAxisAlignment.CENTER,
-                                horizontal_alignment=ft.CrossAxisAlignment.START,
-                                spacing=5,
-                                controls=[
-                                    ft.Text("IDR : ", color="white", weight=ft.FontWeight.W_400),
-                                    ft.Text("Item(s) : ", color="white", weight=ft.FontWeight.W_400),
-                                ],
-                            ),
+                            ft.Text(self.flag , color="white", size = 18, weight=ft.FontWeight.W_400),
+                            # ft.Column(
+                            #     width=80,
+                            #     alignment=ft.MainAxisAlignment.CENTER,
+                            #     horizontal_alignment=ft.CrossAxisAlignment.START,
+                            #     spacing=5,
+                            #     controls=[
+                            #         ft.Text("IDR : " + str(amount_selected_item), color="white", weight=ft.FontWeight.W_400),
+                            #         ft.Text("Item(s) : " + str(len(selected_item)), color="white", weight=ft.FontWeight.W_400),
+                            #     ],
+                            # ),
                         ]
                     ),
                     ft.TextButton(
